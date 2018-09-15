@@ -18,7 +18,7 @@ public class Scheduler {
 		System.out.println("FCFS Algorithm: " + "\n");
 		for (int i = 0; i < 5; i++){
 			System.out.println("Run #: " + (i+1));
-			processGenerator.createProcess(40);
+			processGenerator.createProcess(20);
 			Process[] procArr = processGenerator.getProcessArray();
 			
 			for(int j = 0; j < procArr.length; j++){

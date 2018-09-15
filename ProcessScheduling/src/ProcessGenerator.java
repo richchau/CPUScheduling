@@ -60,7 +60,11 @@ public class ProcessGenerator {
 			process.setArrivalTime(randArrivalTime);
 			process.setExpTotRunTime(randRunTime);
 			process.setPriority(randPriority);
-			process.setProcName(Integer.toString(i));
+			
+			//Converts int to char for process name
+			int decVal = i + 65;
+			char ch = (char) decVal;
+			process.setProcName(Character.toString(ch));
 			
 			processPriorityQueue.add(process);
 		}
