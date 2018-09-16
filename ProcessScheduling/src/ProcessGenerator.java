@@ -33,7 +33,7 @@ public class ProcessGenerator {
 	}
 	
 	//Method to generate processes
-	public void createProcess(int numOfProc){
+	public void createProcesses(int numOfProc){
 		
 		Random r = new Random();
 		
