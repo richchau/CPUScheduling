@@ -5,7 +5,7 @@ import java.awt.geom.FlatteningPathIterator;
  * First Come First Serve Algorithm
  * 
  */
-public class FCFS {
+public class FCFS extends Scheduler{
 	
 	private Process[] processArr;
 	private float[] waitingTimesArr;
@@ -52,6 +52,18 @@ public class FCFS {
 		float avgTotTurnAroundTime = totTurnAroundTime / (processArr.length);
 		System.out.println("FCFS Average Waiting Time: " + avgWaitingTime);
 		System.out.println("FCFS Average Turnaround Time: " + avgTotTurnAroundTime);
+		
+	}
+
+	@Override
+	public Process getNext() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addProcess(Process p) {
+		// TODO Auto-generated method stub
 		
 	}
 	

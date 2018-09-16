@@ -10,6 +10,7 @@ public class Process {
 	public Process(float arrivalTime, float expectedTotalRunTime, int priority, String name) {
 		this.arrivalTime = arrivalTime;
 		expTotRunTime = expectedTotalRunTime;
+		remainingTime = expTotRunTime;
 		this.priority = priority;
 		this.name = name;
 	}
