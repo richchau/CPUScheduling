@@ -36,4 +36,8 @@ public class Process {
 	public void setProcName(String name){
 		this.name = name;
 	}
+	
+	public String toString() {
+		return getProcName();
+	}
 }
