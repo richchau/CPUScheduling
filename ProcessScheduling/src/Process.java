@@ -40,4 +40,8 @@ public class Process {
 	public String toString() {
 		return getProcName();
 	}
+	
+	public String getDataString() {
+		return getProcName() + " " + getArrivalTime() + " " + getExpTotRunTime();
+	}
 }

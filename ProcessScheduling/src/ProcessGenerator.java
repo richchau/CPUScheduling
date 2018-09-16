@@ -72,18 +72,13 @@ public class ProcessGenerator {
 	
 	//Returns the process queue as an array 
 	public Process[] getProcessArray(){
-		Process[] procArray = new Process[processPriorityQueue.size()];
-		for(int i = 0; i < procArray.length; i++){
-			procArray[i] = processPriorityQueue.remove();
-		}
-		return procArray;
+		return processPriorityQueue.toArray(new Process[processPriorityQueue.size()]);
 	}
 	
 	//Test: prints queue to test results
 	public void printPriorityQueue(){
-		while(!processPriorityQueue.isEmpty()){
-			Process p = processPriorityQueue.remove();
-			System.out.println(p.getProcName() + " " + p.getArrivalTime() + " " + p.getExpTotRunTime());
+		for(Process p : getProcessArray()) {
+			System.out.println(p.getDataString());
 		}
 	}
 	
