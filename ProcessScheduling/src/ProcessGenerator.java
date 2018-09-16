@@ -38,7 +38,7 @@ public class ProcessGenerator {
 		Random r = new Random();
 		
 		for (int i = 0; i < numOfProc; i++){
-			Process process = new Process();
+			Process process;
 			
 			//Randomly generates process arrival time
 			float minArrTime = 0;
@@ -55,16 +55,12 @@ public class ProcessGenerator {
 			int maxPriority = 4;
 			int randPriority = minPriority + r.nextInt((maxPriority - minPriority) + 1);
 			
-			
-			//Assign generated values to process
-			process.setArrivalTime(randArrivalTime);
-			process.setExpTotRunTime(randRunTime);
-			process.setPriority(randPriority);
-			
 			//Converts int to char for process name
 			int decVal = i + 65;
 			char ch = (char) decVal;
-			process.setProcName(Character.toString(ch));
+			
+			//Assign generated values to process
+			process = new Process(randArrivalTime, randRunTime, randPriority,Character.toString(ch));			
 			
 			processPriorityQueue.add(process);
 		}
