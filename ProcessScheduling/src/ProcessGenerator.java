@@ -71,6 +71,14 @@ public class ProcessGenerator {
 		return processPriorityQueue.toArray(new Process[processPriorityQueue.size()]);
 	}
 	
+	public Process peek() {
+		return processPriorityQueue.peek();
+	}
+	
+	public Process remove() {
+		return processPriorityQueue.remove();
+	}
+	
 	//Test: prints queue to test results
 	public void printPriorityQueue(){
 		for(Process p : getProcessArray()) {
