@@ -14,11 +14,16 @@ public class Simulator {
 			
 			// Simulates running 100 time slices
 			for (int time = 0; time < 100; time++) {
+				
 				//Simulates processes arriving to the queue
 				while(pg.peek().getArrivalTime() <= time) {
 					s.addProcess(pg.remove());
 				}
+				
+				//Get the process that is going to run in the current time slice
 				s.getNext();
+				
+				//If a process is running right now, reduce it's remaining time by 1
 				if(current != null) {
 					current.reduceRemainingTime(1);
 				}
