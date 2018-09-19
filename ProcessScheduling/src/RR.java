@@ -74,20 +74,6 @@ public class RR  extends Scheduler{
 		}
 		return truth;
 	}
-	/*
-	public static void main(String[] args)
-    {
-		Process a = new Process(1, 10, 2, "a");
-		Process b = new Process(1, 5, 2, "b");
-		Process c = new Process(1, 8, 2, "c");
-		Process[] array = new Process[3];
-		array[0] = a;
-		array[1] = b;
-		array[2] = c;
-		RR r = new RR(array,2);
-		r.computeAvgWaitingTime();
-    }
-    */
 	public Process getNext() {
 		// TODO Auto-generated method stub
 		return null;
