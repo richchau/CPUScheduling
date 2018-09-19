@@ -11,6 +11,9 @@ public class Process {
 		this.arrivalTime = arrivalTime;
 		expTotRunTime = expectedTotalRunTime;
 		remainingTime = expTotRunTime;
+		if(remainingTime <= 0){
+			completed = true;
+		}
 		this.priority = priority;
 		this.name = name;
 	}
