@@ -12,10 +12,10 @@ public class FCFS extends Scheduler{
 	
 	public FCFS(Process[] procArr){
 		processArr = procArr;
-		computeAvgWaitingTime();
+		computeStatistics();
 	}
 	
-	public void computeAvgWaitingTime(){
+	public void computeStatistics(){
 		float serviceTime;
 		float totWaitingTime = 0;
 		float waitingTime;
@@ -52,9 +52,11 @@ public class FCFS extends Scheduler{
 		float avgTotTurnAroundTime = totTurnAroundTime / (processArr.length);
 		System.out.println("FCFS Average Waiting Time: " + avgWaitingTime);
 		System.out.println("FCFS Average Turnaround Time: " + avgTotTurnAroundTime);
+		//Wait time and response time are the same in FCFS
+		System.out.println("FCFS Average Response Time: " + avgWaitingTime);
 		
 	}
-
+	
 	@Override
 	public Process getNext() {
 		// TODO Auto-generated method stub
