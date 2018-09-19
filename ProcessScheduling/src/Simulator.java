@@ -21,7 +21,7 @@ public class Simulator {
 				}
 				
 				//Get the process that is going to run in the current time slice
-				s.getNext();
+				current = s.getNext();
 				
 				//If a process is running right now, reduce it's remaining time by 1
 				if(current != null) {
