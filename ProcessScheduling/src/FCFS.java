@@ -1,4 +1,6 @@
 import java.awt.geom.FlatteningPathIterator;
+import java.nio.file.spi.FileSystemProvider;
+import java.util.ArrayList;
 
 /*
  * 
@@ -7,12 +9,16 @@ import java.awt.geom.FlatteningPathIterator;
  */
 public class FCFS extends Scheduler{
 	
+	private ArrayList<Process> processList;
 	private Process[] processArr;
-	private float[] waitingTimesArr;
+	private ArrayList<String> queueList;
 	
-	public FCFS(Process[] procArr){
-		processArr = procArr;
-		computeStatistics();
+	
+	public FCFS(ArrayList<Process> procList){
+		processList = procList;
+		processArr = processList.toArray(processArr);
+		queueList = new ArrayList<>();
+	
 	}
 	
 	public void computeStatistics(){
@@ -35,6 +41,7 @@ public class FCFS extends Scheduler{
 				if (serviceTime > 99){
 					break;
 				}
+				
 			}else{
 				waitingTime = ((processArr[i].getExpTotRunTime() + serviceTime) - processArr[i+1].getArrivalTime());
 				totTurnAroundTime += (waitingTime + processArr[i + 1].getExpTotRunTime());
@@ -45,6 +52,7 @@ public class FCFS extends Scheduler{
 				if (serviceTime > 99){
 					break;
 				}
+				
 			}
 		}
 		
@@ -55,6 +63,33 @@ public class FCFS extends Scheduler{
 		//Wait time and response time are the same in FCFS
 		System.out.println("FCFS Average Response Time: " + avgWaitingTime);
 		
+	}
+	
+	public void simulate(){
+		 int timeCount = 0;  
+	        while (!processList.isEmpty() && timeCount <= 100)  
+	        {
+	            Process process = processList.remove(0);
+
+	            while (process.getArrivalTime() > timeCount) {
+	                queueList.add("");
+	                timeCount++;
+	            }
+
+	            while (process.getExpTotRunTime() > 0) {
+	                queueList.add(process.getProcName());
+	                process.reduceRemainingTime(1);
+	                timeCount++;
+	            }
+	        }
+	        
+	     printTimeChart();
+	}
+	
+	public void printTimeChart(){
+		for (int i = 0; i < queueList.size(); i++){
+			System.out.print(queueList.get(i));
+		}
 	}
 	
 	@Override
