@@ -6,7 +6,7 @@ public class Process {
 	private float remainingTime;
 	private boolean completed = false;
 	private String name;
-	
+	private Process next;
 	public Process(float arrivalTime, float expectedTotalRunTime, int priority, String name) {
 		this.arrivalTime = arrivalTime;
 		expTotRunTime = expectedTotalRunTime;
@@ -73,5 +73,11 @@ public class Process {
 	
 	public String getDataString() {
 		return getProcName() + " " + getArrivalTime() + " " + getExpTotRunTime();
+	}
+	public void setNext(Process p) {
+		next = p;
+	}
+	public Process getNext() {
+		return next;
 	}
 }
