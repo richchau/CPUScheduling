@@ -1,5 +1,6 @@
 import java.awt.geom.FlatteningPathIterator;
 import java.nio.file.spi.FileSystemProvider;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /*
@@ -12,12 +13,20 @@ public class FCFS extends Scheduler{
 	private ArrayList<Process> processList;
 	private Process[] processArr;
 	private ArrayList<String> queueList;
+	private int throughput;
 	
 	
 	public FCFS(ArrayList<Process> procList){
 		processList = procList;
-		processArr = processList.toArray(processArr);
+		processArr = new Process[processList.size()];
+		for(int i = 0; i < processList.size(); i++){
+			processArr[i] = procList.get(i);
+		}
 		queueList = new ArrayList<>();
+		
+		simulate();
+		computeStatistics();
+		printTimeChart();
 	
 	}
 	
@@ -62,34 +71,44 @@ public class FCFS extends Scheduler{
 		System.out.println("FCFS Average Turnaround Time: " + avgTotTurnAroundTime);
 		//Wait time and response time are the same in FCFS
 		System.out.println("FCFS Average Response Time: " + avgWaitingTime);
+		System.out.println("FCFS Throughput: " + throughput);
 		
 	}
+	
 	
 	public void simulate(){
 		 int timeCount = 0;  
 	        while (!processList.isEmpty() && timeCount <= 100)  
 	        {
 	            Process process = processList.remove(0);
+	            throughput++;
 
 	            while (process.getArrivalTime() > timeCount) {
-	                queueList.add("");
+	                queueList.add("*");
 	                timeCount++;
 	            }
 
-	            while (process.getExpTotRunTime() > 0) {
+	            while (process.getRemainingTime() > 0) {
 	                queueList.add(process.getProcName());
 	                process.reduceRemainingTime(1);
 	                timeCount++;
 	            }
 	        }
 	        
-	     printTimeChart();
 	}
 	
+	
 	public void printTimeChart(){
+		
+		System.out.println("FCFS Time Chart:");
+		
 		for (int i = 0; i < queueList.size(); i++){
 			System.out.print(queueList.get(i));
 		}
+	}
+	
+	public int getThroughput() {
+		return throughput;
 	}
 	
 	@Override

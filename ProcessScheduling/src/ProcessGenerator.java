@@ -4,7 +4,9 @@
  * 
  */
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
 
@@ -18,10 +20,10 @@ public class ProcessGenerator {
 		Comparator<Process> arrivalTimeComparator = new Comparator<Process>(){
 			@Override
 			public int compare(Process p1, Process p2) {
-				if (p1.getArrivalTime() < p2.getArrivalTime()){
+				if (p1.getArrivalTime() > p2.getArrivalTime()){
 					return 1;
 				}
-				if (p1.getArrivalTime() > p2.getArrivalTime()){
+				if (p1.getArrivalTime() < p2.getArrivalTime()){
 					return -1;
 				}
 				return 0;
@@ -67,8 +69,16 @@ public class ProcessGenerator {
 	}
 	
 	//Returns the process queue as an array 
-	public Process[] getProcessArray(){
-		return processPriorityQueue.toArray(new Process[processPriorityQueue.size()]);
+	public ArrayList<Process> getNewProcessArrayList(){
+		createProcesses(26);
+		ArrayList<Process> list = new ArrayList<Process>();
+		
+		while (!processPriorityQueue.isEmpty()){
+			list.add(processPriorityQueue.remove());
+		}
+		
+		processPriorityQueue.clear();
+		return list;
 	}
 	
 	public Process peek() {
@@ -79,11 +89,13 @@ public class ProcessGenerator {
 		return processPriorityQueue.remove();
 	}
 	
+	/*
 	//Test: prints queue to test results
 	public void printPriorityQueue(){
 		for(Process p : getProcessArray()) {
 			System.out.println(p.getDataString());
 		}
 	}
+	*/
 	
 }
