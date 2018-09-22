@@ -97,14 +97,38 @@ public class FCFS extends Scheduler{
 	        
 	}
 	
+
 	
 	public void printTimeChart(){
 		
 		System.out.println("FCFS Time Chart:");
+		String quantas = "";
+        for (int i = 0; i < 100; i++) {
+            quantas = quantas + String.format("%3d", i) + " |";
+        }
+        quantas = quantas.substring(0, quantas.length() - 1);
+        System.out.println(quantas);
 		
+        String previous = queueList.get(0);
+        String printOut = "";
+        for (String string : queueList) {
+            if (string.equals(previous)) {
+                printOut = printOut + String.format("%4s", string) + "|";
+            } else {
+                printOut = printOut.substring(0, printOut.length());
+                printOut = printOut + String.format("%4s", string) + "|";
+                previous = string;
+            }
+        }
+        printOut = printOut.substring(0, printOut.length() - 1);
+
+        System.out.println(printOut);
+        
+		/*
 		for (int i = 0; i < queueList.size(); i++){
 			System.out.print(queueList.get(i));
 		}
+		*/
 	}
 	
 	public int getThroughput() {
