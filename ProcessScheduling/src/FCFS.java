@@ -17,10 +17,15 @@ public class FCFS extends Scheduler{
 	
 	
 	public FCFS(ArrayList<Process> procList){
-		processList = procList;
+		processList = new ArrayList<>();
+		
+		for(int i = 0; i < procList.size(); i++){
+			processList.add(new Process(procList.get(i).getArrivalTime(), procList.get(i).getExpTotRunTime(), procList.get(i).getPriority(), procList.get(i).getProcName()));
+		}
+		
 		processArr = new Process[processList.size()];
 		for(int i = 0; i < processList.size(); i++){
-			processArr[i] = procList.get(i);
+			processArr[i] = processList.get(i);
 		}
 		queueList = new ArrayList<>();
 		
@@ -112,19 +117,19 @@ public class FCFS extends Scheduler{
 		
         //Prints the result of FCFS queue to the time chart 
         String previous = queueList.get(0);
-        String printOut = "";
+        String output = "";
         for (String string : queueList) {
             if (string.equals(previous)) {
-                printOut = printOut + String.format("%4s", string) + "|";
+                output = output + String.format("%4s", string) + "|";
             } else {
-                printOut = printOut.substring(0, printOut.length());
-                printOut = printOut + String.format("%4s", string) + "|";
+                output = output.substring(0, output.length());
+                output = output + String.format("%4s", string) + "|";
                 previous = string;
             }
         }
-        printOut = printOut.substring(0, printOut.length() - 1);
+        output = output.substring(0, output.length() - 1);
 
-        System.out.println(printOut);
+        System.out.println(output);
         
 	}
 	
