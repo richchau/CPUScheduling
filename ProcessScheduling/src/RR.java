@@ -10,7 +10,7 @@ public class RR  extends Scheduler{
 	private PriorityQueue<Process> processQue;
 	private ArrayList<Process> processList;
 	private ArrayList<String> queueList;
-	private float[] rem_bt;
+	private float[] rem_bt;https://github.com/richchau/CPUScheduling/network/members
 	private int quantum =1;
 	private int throughput = 0;
 	public RR(ArrayList<Process> procList) {
@@ -36,29 +36,40 @@ public class RR  extends Scheduler{
 	
 	public void simulate(){
 		 int timeCount = 0;
-		 
+		 Stack<Process> finished = new Stack<>();
+		 boolean toErase = false;
 	        while (!processList.isEmpty() && timeCount <= 100)  
 	        {
-	        	
 	            Process process = processList.remove(0);
 	            
 	            throughput++;
+	            
 	            processQue.add(process);
 	            while (processQue.peek().getArrivalTime() > timeCount) {
 	                queueList.add(" ");
 	                timeCount++;
 	            }
+	            
 	            for (Process p: processQue) {
 	            		if (p.getRemainingTime()>0 && p.getArrivalTime()<timeCount) {
 	            			p.reduceRemainingTime(1);
 	            			queueList.add(p.getProcName());
 	            			timeCount++;
-				}
+	            		}
+	            		if (p.getRemainingTime()==0) {
+	            			finished.push(p);
+	            			toErase = true;
+	            		}
 	            }
-	            
+	            if (toErase) {
+	            	for (Process p: finished) {
+	            		processQue.remove(p);
+	            	}
+	            	toErase = false;
+	            }
 	        }
 	        
-	}
+}
 	public void printTimeChart(){
 		
 		//Prints out the quanta labels for time chart
