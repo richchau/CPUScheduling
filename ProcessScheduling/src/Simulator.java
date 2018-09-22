@@ -66,7 +66,7 @@ public class Simulator {
 		FCFS fcfs5 = new FCFS(list5);
 		
 		double avgThroughput = (fcfs1.getThroughput() + fcfs2.getThroughput() + fcfs3.getThroughput() + fcfs4.getThroughput() + fcfs5.getThroughput()) / 5;
-		System.out.println("\n\nFCFS Average Throughput: " + avgThroughput);
+		System.out.println("\n\n***FCFS Average Throughput: " + avgThroughput);
 		
 		
 		

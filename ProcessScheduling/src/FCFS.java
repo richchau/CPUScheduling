@@ -84,7 +84,7 @@ public class FCFS extends Scheduler{
 	            throughput++;
 
 	            while (process.getArrivalTime() > timeCount) {
-	                queueList.add("*");
+	                queueList.add(" ");
 	                timeCount++;
 	            }
 
@@ -101,6 +101,7 @@ public class FCFS extends Scheduler{
 	
 	public void printTimeChart(){
 		
+		//Prints out the quanta labels for time chart
 		System.out.println("FCFS Time Chart:");
 		String quantas = "";
         for (int i = 0; i < 100; i++) {
@@ -109,6 +110,7 @@ public class FCFS extends Scheduler{
         quantas = quantas.substring(0, quantas.length() - 1);
         System.out.println(quantas);
 		
+        //Prints the result of FCFS queue to the time chart 
         String previous = queueList.get(0);
         String printOut = "";
         for (String string : queueList) {
@@ -124,11 +126,6 @@ public class FCFS extends Scheduler{
 
         System.out.println(printOut);
         
-		/*
-		for (int i = 0; i < queueList.size(); i++){
-			System.out.print(queueList.get(i));
-		}
-		*/
 	}
 	
 	public int getThroughput() {
