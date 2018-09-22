@@ -39,7 +39,9 @@ public class RR  extends Scheduler{
 		 
 	        while (!processList.isEmpty() && timeCount <= 100)  
 	        {
+	        	
 	            Process process = processList.remove(0);
+	            
 	            throughput++;
 	            processQue.add(process);
 	            while (processQue.peek().getArrivalTime() > timeCount) {
@@ -47,11 +49,11 @@ public class RR  extends Scheduler{
 	                timeCount++;
 	            }
 	            for (Process p: processQue) {
-	            	if (p.getRemainingTime()>0) {
-	            		p.reduceRemainingTime(1);
-	            		queueList.add(p.getProcName());
-	            		timeCount++;
-	            	}
+	            		if (p.getRemainingTime()>0 && p.getArrivalTime()<timeCount) {
+	            			p.reduceRemainingTime(1);
+	            			queueList.add(p.getProcName());
+	            			timeCount++;
+				}
 	            }
 	            
 	        }
