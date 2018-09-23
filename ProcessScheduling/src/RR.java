@@ -1,4 +1,4 @@
-
+import java.util.Stack;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -10,13 +10,18 @@ public class RR  extends Scheduler{
 	private PriorityQueue<Process> processQue;
 	private ArrayList<Process> processList;
 	private ArrayList<String> queueList;
-	private float[] rem_bt;https://github.com/richchau/CPUScheduling/network/members
+	private float[] rem_bt;
 	private int quantum =1;
 	private int throughput = 0;
+	private float totWaitingTime = 0;
+	private float totTurnAroundTime = 0;
+	private float totResponseTime = 0;
 	public RR(ArrayList<Process> procList) {
 		processList = new ArrayList<>();
+		processArr = new Process[procList.size()];
 		for(int i = 0; i < procList.size(); i++){
 			processList.add(new Process(procList.get(i).getArrivalTime(), procList.get(i).getExpTotRunTime(), procList.get(i).getPriority(), procList.get(i).getProcName()));
+			processArr[i] = processList.get(i);
 		}
 		Comparator<Process> c = new Comparator<Process>(){
 
@@ -31,7 +36,7 @@ public class RR  extends Scheduler{
 		queueList = new ArrayList<>();
 		simulate();
 		printTimeChart();
-	//	computeAvgWaitingTime();
+		computeStatistics();
 	}
 	
 	public void simulate(){
@@ -43,11 +48,14 @@ public class RR  extends Scheduler{
 	            Process process = processList.remove(0);
 	            
 	            throughput++;
-	            
+	       
 	            processQue.add(process);
 	            while (processQue.peek().getArrivalTime() > timeCount) {
 	                queueList.add(" ");
 	                timeCount++;
+	                totWaitingTime = totWaitingTime+processQue.size();
+	                totTurnAroundTime = totWaitingTime+process.getExpTotRunTime();
+	                totResponseTime = totResponseTime+timeCount-process.getArrivalTime();
 	            }
 	            
 	            for (Process p: processQue) {
@@ -55,6 +63,9 @@ public class RR  extends Scheduler{
 	            			p.reduceRemainingTime(1);
 	            			queueList.add(p.getProcName());
 	            			timeCount++;
+	            			totWaitingTime = totWaitingTime+processQue.size()-1;
+	            			totTurnAroundTime = totWaitingTime+process.getExpTotRunTime();
+	            			totResponseTime = totResponseTime+timeCount-process.getArrivalTime();
 	            		}
 	            		if (p.getRemainingTime()==0) {
 	            			finished.push(p);
@@ -97,6 +108,20 @@ public class RR  extends Scheduler{
 
         System.out.println(printOut);
         
+	}
+	
+	public void computeStatistics(){
+		
+		
+		float avgWaitingTime = totWaitingTime / (processArr.length - 1);
+		float avgTotTurnAroundTime = totTurnAroundTime / (processArr.length);
+		float avgTotResponseTime = totResponseTime / (processArr.length);
+		System.out.println("RR Average Waiting Time: " + avgWaitingTime);
+		System.out.println("RR Average Turnaround Time: " + avgTotTurnAroundTime);
+		
+		System.out.println("RR Average Response Time: " + avgTotResponseTime);
+		System.out.println("RR Throughput: " + throughput);
+		
 	}
 	
 		
