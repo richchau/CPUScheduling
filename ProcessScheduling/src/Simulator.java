@@ -67,8 +67,28 @@ public class Simulator {
 		
 		double avgThroughput = (fcfs1.getThroughput() + fcfs2.getThroughput() + fcfs3.getThroughput() + fcfs4.getThroughput() + fcfs5.getThroughput()) / 5;
 		System.out.println("\n\n***FCFS Average Throughput: " + avgThroughput);
+		/*
+		 * RR COMPUTATIONS
+		 */
+		System.out.println("*************************************" + "\n RR Statistics \n" + "************************************* \n");
+		System.out.println("SET 1:");
 		
+		RR rr1 = new RR(list1);
+		System.out.println("\n\nSET 2:");
 		
+		RR rr2 = new RR(list2);
+		System.out.println("\n\nSET 3:");
+		
+		RR rr3 = new RR(list3);
+		System.out.println("\n\nSET 4:");
+		
+		RR rr4 = new RR(list4);
+		System.out.println("\n\nSET 5:");
+		
+		RR rr5 = new RR(list5);
+		avgThroughput = (rr1.getThroughput() + rr2.getThroughput() + rr3.getThroughput() + rr4.getThroughput() + rr5.getThroughput()) / 5;
+		System.out.println("\n\n***RR Average Throughput: " + avgThroughput);
+
 		
 		
 		//LinkedList<Scheduler> schedulers = new LinkedList<Scheduler>();
