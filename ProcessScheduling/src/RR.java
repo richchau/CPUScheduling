@@ -55,7 +55,7 @@ public class RR  extends Scheduler{
 	                timeCount++;
 	                totWaitingTime = totWaitingTime+processQue.size();
 	                totTurnAroundTime = totWaitingTime+process.getExpTotRunTime();
-	                totResponseTime = totResponseTime+timeCount-process.getArrivalTime();
+	                
 	            }
 	            
 	            for (Process p: processQue) {
@@ -65,7 +65,7 @@ public class RR  extends Scheduler{
 	            			timeCount++;
 	            			totWaitingTime = totWaitingTime+processQue.size()-1;
 	            			totTurnAroundTime = totWaitingTime+process.getExpTotRunTime();
-	            			totResponseTime = totResponseTime+timeCount-process.getArrivalTime();
+	            			totResponseTime = Math.abs(totResponseTime+timeCount-process.getArrivalTime());
 	            		}
 	            		if (p.getRemainingTime()==0) {
 	            			finished.push(p);
@@ -123,7 +123,10 @@ public class RR  extends Scheduler{
 		System.out.println("RR Throughput: " + throughput);
 		
 	}
-	
+		
+	public int getThroughput() {
+		return throughput;
+	}
 		
 	/*
 	public void computeAvgWaitingTime(){
