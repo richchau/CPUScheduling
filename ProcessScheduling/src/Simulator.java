@@ -67,10 +67,11 @@ public class Simulator {
 		
 		double avgThroughput = (fcfs1.getThroughput() + fcfs2.getThroughput() + fcfs3.getThroughput() + fcfs4.getThroughput() + fcfs5.getThroughput()) / 5;
 		System.out.println("\n\n***FCFS Average Throughput: " + avgThroughput);
+		
 		/*
 		 * RR COMPUTATIONS
 		 */
-		System.out.println("*************************************" + "\n RR Statistics \n" + "************************************* \n");
+		System.out.println("\n*************************************" + "\n RR Statistics \n" + "************************************* \n");
 		System.out.println("SET 1:");
 		
 		RR rr1 = new RR(list1);
@@ -88,7 +89,29 @@ public class Simulator {
 		RR rr5 = new RR(list5);
 		avgThroughput = (rr1.getThroughput() + rr2.getThroughput() + rr3.getThroughput() + rr4.getThroughput() + rr5.getThroughput()) / 5;
 		System.out.println("\n\n***RR Average Throughput: " + avgThroughput);
-
+		
+		
+		/*
+		 * SJF COMPUTATIONS
+		 */
+		System.out.println("\n*************************************" + "\n SJF Statistics \n" + "************************************* \n");
+		System.out.println("SET 1:");
+		SJF sjf1 = new SJF(list1);
+		
+		System.out.println("\n\nSET 2:");
+		SJF sjf2 = new SJF(list2);
+		
+		System.out.println("\n\nSET 3:");
+		SJF sjf3 = new SJF(list3);
+		
+		System.out.println("\n\nSET 4:");
+		SJF sjf4 = new SJF(list4);
+		
+		System.out.println("\n\nSET 5:");
+		SJF sjf5 = new SJF(list5);
+		
+		avgThroughput = (sjf1.getThroughput() + sjf2.getThroughput() + sjf3.getThroughput() + sjf4.getThroughput() + sjf5.getThroughput()) / 5;
+		System.out.println("\n\n***SJF Average Throughput: " + avgThroughput);
 		
 		
 		//LinkedList<Scheduler> schedulers = new LinkedList<Scheduler>();
