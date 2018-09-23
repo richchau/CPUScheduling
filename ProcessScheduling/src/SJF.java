@@ -31,7 +31,12 @@ public class SJF extends Scheduler {
 	};
 	
 	public SJF(ArrayList<Process> procList){
-		processList = new ArrayList<>(procList);
+		processList = new ArrayList<>();
+		
+		for(int i = 0; i < procList.size(); i++){
+			processList.add(new Process(procList.get(i).getArrivalTime(), procList.get(i).getExpTotRunTime(), procList.get(i).getPriority(), procList.get(i).getProcName()));
+		}
+		
 		tempList = new ArrayList<Process>();
 		queueList = new ArrayList<String>();
 		
