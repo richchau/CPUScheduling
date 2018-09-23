@@ -120,28 +120,28 @@ public class Simulator {
 		
 		
 		/*
-		 * HPF COMPUTATIONS
+		 * HPF-NonPreemptive COMPUTATIONS
 		 * 
 		 */
 		
-		System.out.println("\n*************************************" + "\n HPF Statistics \n" + "************************************* \n");
+		System.out.println("\n*************************************" + "\n HPF-NonPreemptive Statistics \n" + "************************************* \n");
 		System.out.println("SET 1:");
-		HPF hpf1 = new HPF(list1);
+		HPFNonPreemptive hpf1 = new HPFNonPreemptive(list1);
 		
 		System.out.println("\n\nSET 2:");
-		HPF hpf2 = new HPF(list2);
+		HPFNonPreemptive hpf2 = new HPFNonPreemptive(list2);
 		
 		System.out.println("\n\nSET 3:");
-		HPF hpf3 = new HPF(list3);
+		HPFNonPreemptive hpf3 = new HPFNonPreemptive(list3);
 		
 		System.out.println("\n\nSET 4:");
-		HPF hpf4 = new HPF(list4);
+		HPFNonPreemptive hpf4 = new HPFNonPreemptive(list4);
 		
 		System.out.println("\n\nSET 5:");
-		HPF hpf5 = new HPF(list5);
+		HPFNonPreemptive hpf5 = new HPFNonPreemptive(list5);
 		
 		avgThroughput = (hpf1.getThroughput() + hpf2.getThroughput() + hpf3.getThroughput() + hpf4.getThroughput() + hpf5.getThroughput()) / 5;
-		System.out.println("\n\n***HPF Average Throughput: " + avgThroughput);
+		System.out.println("\n\n***HPF-NonPreemptive Average Throughput: " + avgThroughput);
 		
 		//LinkedList<Scheduler> schedulers = new LinkedList<Scheduler>();
 		

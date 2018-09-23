@@ -29,82 +29,9 @@ public class HPF  extends Scheduler{
 		queueList = new ArrayList<>();
 		tempList = new ArrayList<>();
 		
-		simulate();
-		printTimeChart();
 	}
 	
-	public void simulate() {
-		int quanta = 0;
-		Process highestPriority;
-		
-	    while (quanta < 100) {
-	        //adds the data to the queue
-	        for (Process p : processList) {
-	            if (p.getArrivalTime() < quanta) {
-	                tempList.add(p);
-	            }
-	        }
-	        
-	        processList.removeAll(tempList);
-	        
-	        // checks if the queue is empty
-	        if (tempList.isEmpty()) {
-	            queueList.add(" ");
-	            quanta++;
-	        } else {
-	            highestPriority = tempList.get(0);
-	            throughput++;
-	            for (Process q : tempList) {
-	                if (q.getPriority() > highestPriority.getPriority()) {
-	                    highestPriority = q;
-	                }
-	            }
-	       
-	            
-	            while (highestPriority.getRemainingTime() > 0) {
-	                queueList.add(highestPriority.getProcName());
-	                highestPriority.reduceRemainingTime(1);
-	                quanta++;
-	            }
-	          
-	            tempList.remove(highestPriority);
-	        }
-	    }
-	    
-	}
-
-	public void printTimeChart(){
-		
-		//Prints out the quanta labels for time chart
-		System.out.println("HPF Time Chart:");
-		String quantas = "";
-	    for (int i = 0; i < 100; i++) {
-	        quantas = quantas + String.format("%3d", i) + " |";
-	    }
-	    quantas = quantas.substring(0, quantas.length() - 1);
-	    System.out.println(quantas);
-		
-	    //Prints the result of FCFS queue to the time chart 
-	    String previous = queueList.get(0);
-	    String output = "";
-	    for (String string : queueList) {
-	        if (string.equals(previous)) {
-	            output = output + String.format("%4s", string) + "|";
-	        } else {
-	            output = output.substring(0, output.length());
-	            output = output + String.format("%4s", string) + "|";
-	            previous = string;
-	        }
-	    }
-	    output = output.substring(0, output.length() - 1);
-
-	    System.out.println(output);
-	    
-	}
-
-	public int getThroughput() {
-		return throughput;
-	}
+	
 	
 	@Override
 	public Process getNext() {
