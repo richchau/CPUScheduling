@@ -114,6 +114,35 @@ public class Simulator {
 		System.out.println("\n\n***SJF Average Throughput: " + avgThroughput);
 		
 		
+		/*
+		 * SRT COMPUTATIONS
+		 */
+		
+		
+		/*
+		 * HPF COMPUTATIONS
+		 * 
+		 */
+		
+		System.out.println("\n*************************************" + "\n HPF Statistics \n" + "************************************* \n");
+		System.out.println("SET 1:");
+		HPF hpf1 = new HPF(list1);
+		
+		System.out.println("\n\nSET 2:");
+		HPF hpf2 = new HPF(list2);
+		
+		System.out.println("\n\nSET 3:");
+		HPF hpf3 = new HPF(list3);
+		
+		System.out.println("\n\nSET 4:");
+		HPF hpf4 = new HPF(list4);
+		
+		System.out.println("\n\nSET 5:");
+		HPF hpf5 = new HPF(list5);
+		
+		avgThroughput = (hpf1.getThroughput() + hpf2.getThroughput() + hpf3.getThroughput() + hpf4.getThroughput() + hpf5.getThroughput()) / 5;
+		System.out.println("\n\n***HPF Average Throughput: " + avgThroughput);
+		
 		//LinkedList<Scheduler> schedulers = new LinkedList<Scheduler>();
 		
 		/*
